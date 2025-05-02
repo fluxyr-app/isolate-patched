@@ -117,9 +117,6 @@ walktree_ctx(struct walk_context *ctx)
       if (fstatat(ctx->dir_fd, ctx->name, &ctx->st, AT_SYMLINK_NOFOLLOW) < 0)
 	die("Cannot stat %s: %m", ctx->name);
 
-      if (ctx->st.st_dev != ctx->root_dev)
-	die("Unexpected mountpoint: %s", ctx->name);
-
       if (S_ISDIR(ctx->st.st_mode))
 	{
 	  struct walk_context subdir = *ctx;
